@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - Online Shopping</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #172554;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav h1 {
+            color: #facc15;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 8px;
+        }
+
+        nav a:hover {
+            color: #facc15;
+        }
+
+        .cart {
+            background: #facc15;
+            color: #172554;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Promotional Banner */
+        .banner {
+            background: linear-gradient(120deg, #2563eb, #9333ea);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .banner h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .banner p {
+            margin-bottom: 20px;
+        }
+
+        .banner a {
+            background: #facc15;
+            color: #172554;
+            padding: 12px 22px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* Categories */
+        .categories {
+            text-align: center;
+            padding: 25px 10px;
+        }
+
+        .categories a {
+            display: inline-block;
+            background: white;
+            color: #172554;
+            padding: 12px 18px;
+            margin: 6px;
+            border-radius: 20px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+        .categories a:hover {
+            background: #dbeafe;
+        }
+
+        /* Product Grid */
+        .products {
+            padding: 20px 6% 45px;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px #00000012;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .product-image {
+            height: 180px;
+            background: #e0e7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 75px;
+        }
+
+        .details {
+            padding: 18px;
+        }
+
+        .discount {
+            display: inline-block;
+            background: #dcfce7;
+            color: #15803d;
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .details h3 {
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 42px;
+        }
+
+        .rating {
+            color: #eab308;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: bold;
+            color: #172554;
+        }
+
+        .old-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .buy-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 11px;
+            border: none;
+            border-radius: 6px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .buy-btn:hover {
+            background: #172554;
+        }
+
+        /* Footer */
+        footer {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .banner h2 {
+                font-size: 27px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h1>ShopEasy</h1>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="cart">
+            🛒 Cart: <span id="cart-count">0</span>
+        </div>
+    </nav>
+
+    <section class="banner" id="home">
+        <h2>Big Shopping Festival!</h2>
+        <p>Discover amazing products with discounts up to 40%.</p>
+        <a href="#products">Shop Now</a>
+    </section>
+
+    <section class="categories" id="categories">
+        <h2>Shop by Category</h2>
+        <a href="#electronics">📱 Electronics</a>
+        <a href="#fashion">👕 Fashion</a>
+        <a href="#accessories">🎧 Accessories</a>
+        <a href="#home-products">🏠 Home</a>
+    </section>
+
+    <section class="products" id="products">
+        <h2>Featured Products</h2>
+
+        <div class="product-grid">
+
+            <div class="card" id="electronics">
+                <div class="product-image">📱</div>
+                <div class="details">
+                    <span class="discount">20% OFF</span>
+                    <h3>Smartphone</h3>
+                    <p class="description">
+                        Modern smartphone with a clear display
+                        and long-lasting battery.
+                    </p>
+                    <div class="rating">★★★★★ (4.8)</div>
+                    <p class="price">
+                        ₹16,000 <span class="old-price">₹20,000</span>
+                    </p>
+                    <button class="buy-btn" onclick="addToCart('Smartphone')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="card" id="fashion">
+                <div class="product-image">👟</div>
+                <div class="details">
+                    <span class="discount">25% OFF</span>
+                    <h3>Sports Shoes</h3>
+                    <p class="description">
+                        Comfortable shoes for everyday use
+                        and outdoor activities.
+                    </p>
+                    <div class="rating">★★★★☆ (4.5)</div>
+                    <p class="price">
+                        ₹1,500 <span class="old-price">₹2,000</span>
+                    </p>
+                    <button class="buy-btn" onclick="addToCart('Sports Shoes')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="card" id="accessories">
+                <div class="product-image">🎧</div>
+                <div class="details">
+                    <span class="discount">20% OFF</span>
+                    <h3>Headphones</h3>
+                    <p class="description">
+                        Enjoy clear sound with comfortable
+                        over-ear headphones.
+                    </p>
+                    <div class="rating">★★★★★ (4.7)</div>
+                    <p class="price">
+                        ₹2,400 <span class="old-price">₹3,000</span>
+                    </p>
+                    <button class="buy-btn" onclick="addToCart('Headphones')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="card" id="home-products">
+                <div class="product-image">⌚</div>
+                <div class="details">
+                    <span class="discount">40% OFF</span>
+                    <h3>Smart Watch</h3>
+                    <p class="description">
+                        Stylish smartwatch with useful
+                        everyday tracking features.
+                    </p>
+                    <div class="rating">★★★★☆ (4.4)</div>
+                    <p class="price">
+                        ₹1,800 <span class="old-price">₹3,000</span>
+                    </p>
+                    <button class="buy-btn" onclick="addToCart('Smart Watch')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>ShopEasy - Your Online Shopping Store</h3>
+        <p>Contact: support@shopeasy.example</p>
+        <p>© 2026 ShopEasy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        function addToCart(productName) {
+            cartCount++;
+            document.getElementById("cart-count").textContent = cartCount;
+            alert(productName + " added to your cart!");
+        }
+    </script>
+
+</body>
+</html>
