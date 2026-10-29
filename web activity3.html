@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utsav 2026 | College Fest</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f3ff;
+    color: #252044;
+    line-height: 1.6;
+}
+
+/* Navigation */
+nav {
+    background: #211344;
+    color: white;
+    padding: 16px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+nav h2 {
+    color: #f9d66b;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 8px;
+}
+
+nav a:hover {
+    color: #f9d66b;
+}
+
+/* Event Banner */
+.banner {
+    min-height: 380px;
+    padding: 65px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(120deg, #6d28d9, #db2777, #f97316);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner .tag {
+    background: #ffffff30;
+    padding: 6px 16px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.banner h1 {
+    font-size: clamp(36px, 6vw, 60px);
+    margin-bottom: 10px;
+}
+
+.banner p {
+    max-width: 650px;
+    margin-bottom: 24px;
+}
+
+.btn {
+    display: inline-block;
+    background: #f9d66b;
+    color: #211344;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: white;
+}
+
+/* Sections */
+section.content {
+    padding: 45px 6%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+    color: #6d28d9;
+}
+
+.section-title p {
+    color: #69617c;
+}
+
+/* Category Buttons */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.filters button {
+    padding: 10px 18px;
+    border: 1px solid #c4b5fd;
+    background: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filters button:hover,
+.filters button.active {
+    background: #6d28d9;
+    color: white;
+}
+
+/* Event Cards */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #21134412;
+    transition: transform 0.25s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-art {
+    padding: 25px;
+    text-align: center;
+    font-size: 58px;
+    background: linear-gradient(135deg, #ede9fe, #fce7f3);
+}
+
+.event-info {
+    padding: 20px;
+}
+
+.category {
+    display: inline-block;
+    background: #ede9fe;
+    color: #6d28d9;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.event-info h3 {
+    margin-bottom: 8px;
+}
+
+.event-info p {
+    color: #69617c;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.event-info button {
+    margin-top: 10px;
+}
+
+/* Schedule */
+.schedule-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    min-width: 500px;
+}
+
+th, td {
+    border: 1px solid #e4ddf5;
+    padding: 14px;
+    text-align: left;
+}
+
+th {
+    background: #6d28d9;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f1edff;
+}
+
+/* Rules and Coordinators */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.info-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #21134410;
+}
+
+.info-box h3 {
+    color: #6d28d9;
+    margin-bottom: 12px;
+}
+
+.info-box ul {
+    padding-left: 22px;
+}
+
+.info-box li {
+    margin-bottom: 8px;
+}
+
+/* Registration Form */
+.registration {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 28px;
+    border-radius: 15px;
+    box-shadow: 0 4px 18px #21134415;
+}
+
+.registration label {
+    display: block;
+    margin: 12px 0 5px;
+    font-weight: bold;
+}
+
+.registration input,
+.registration select,
+.registration textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d5cde8;
+    border-radius: 7px;
+    font: inherit;
+}
+
+.registration input:focus,
+.registration select:focus,
+.registration textarea:focus {
+    outline: 2px solid #a78bfa;
+}
+
+.registration .btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#message {
+    margin-top: 15px;
+    color: #15803d;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: #211344;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+/* Responsive Design */
+@media (max-width: 850px) {
+    .event-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .event-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section.content {
+        padding: 35px 5%;
+    }
+
+    .registration {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h2>🎉 UTSAV 2026</h2>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#rules">Rules</a>
+        <a href="#register">Register</a>
+    </div>
+</nav>
+
+<!-- Responsive Festival Banner -->
+<header class="banner" id="home">
+    <span class="tag">THE ANNUAL COLLEGE FEST</span>
+    <h1>UTSAV 2026</h1>
+    <p>
+        Celebrate innovation, creativity, talent and friendship!
+        Join us for exciting technical events, cultural competitions
+        and hands-on workshops.
+    </p>
+    <a href="#register" class="btn">Register Now →</a>
+</header>
+
+<!-- Events Section -->
+<section class="content" id="events">
+    <div class="section-title">
+        <h2>Explore Our Events</h2>
+        <p>Choose your category and discover your next challenge.</p>
+    </div>
+
+    <div class="filters">
+        <button class="active" onclick="filterEvents('all', this)">All Events</button>
+        <button onclick="filterEvents('technical', this)">Technical</button>
+        <button onclick="filterEvents('cultural', this)">Cultural</button>
+        <button onclick="filterEvents('workshop', this)">Workshops</button>
+    </div>
+
+    <div class="event-grid">
+
+        <article class="event-card" data-category="technical">
+            <div class="event-art">💻</div>
+            <div class="event-info">
+                <span class="category">Technical</span>
+                <h3>Coding Challenge</h3>
+                <p>Solve programming problems and demonstrate your logical thinking.</p>
+                <p><strong>Time:</strong> 10:00 AM</p>
+                <p><strong>Coordinator:</strong> Rahul Kumar</p>
+                <button class="btn" onclick="selectEvent('Coding Challenge')">
+                    Register
+                </button>
+            </div>
+        </article>
+
+        <article class="event-card" data-category="technical">
+            <div class="event-art">🤖</div>
+            <div class="event-info">
+                <span class="category">Technical</span>
+                <h3>AI Innovation</h3>
+                <p>Present creative artificial intelligence and machine learning ideas.</p>
+                <p><strong>Time:</strong> 11:00 AM</p>
+                <p><strong>Coordinator:</strong> Priya Sharma</p>
+                <button class="btn" onclick="selectEvent('AI Innovation')">
+                    Register
+                </button>
+            </div>
+        </article>
+
+        <article class="event-card" data-category="cultural">
+            <div class="event-art">💃</div>
+            <div class="event-info">
+                <span class="category">Cultural</span>
+                <h3>Dance Competition</h3>
+                <p>Showcase your dance skills through solo or group performances.</p>
+                <p><strong>Time:</strong> 1:00 PM</p>
+                <p><strong>Coordinator:</strong> Sneha Reddy</p>
+                <button class="btn" onclick="selectEvent('Dance Competition')">
+                    Register
+                </button>
+            </div>
+        </article>
+
+        <article class="event-card" data-category="cultural">
+            <div class="event-art">🎤</div>
+            <div class="event-info">
+                <span class="category">Cultural</span>
+                <h3>Singing Competition</h3>
+                <p>Share your musical talent in a lively college competition.</p>
+                <p><strong>Time:</strong> 2:00 PM</p>
+                <p><strong>Coordinator:</strong> Arjun Rao</p>
+                <button class="btn" onclick="selectEvent('Singing Competition')">
+                    Register
+                </button>
+            </div>
+        </article>
+
+        <article class="event-card" data-category="workshop">
+            <div class="event-art">🧠</div>
+            <div class="event-info">
+                <span class="category">Workshop</span>
+                <h3>Generative AI Workshop</h3>
+                <p>Explore AI tools, prompt engineering and practical applications.</p>
+                <p><strong>Time:</strong> 10:30 AM</p>
+                <p><strong>Coordinator:</strong> Kiran Patel</p>
+                <button class="btn" onclick="selectEvent('Generative AI Workshop')">
+                    Register
+                </button>
+            </div>
+        </article>
+
+        <article class="event-card" data-category="workshop">
+            <div class="event-art">🌐</div>
+            <div class="event-info">
+                <span class="category">Workshop</span>
+                <h3>Web Design Workshop</h3>
+                <p>Learn HTML and CSS by building a simple responsive webpage.</p>
+                <p><strong>Time:</strong> 12:00 PM</p>
+                <p><strong>Coordinator:</strong> Meena Devi</p>
+                <button class="btn" onclick="selectEvent('Web Design Workshop')">
+                    Register
+                </button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- Schedule -->
+<section class="content" id="schedule">
+    <div class="section-title">
+        <h2>Festival Schedule</h2>
+        <p>Sample schedule for the festival day.</p>
+    </div>
+
+    <div class="schedule-wrap">
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Event</th>
+                <th>Venue</th>
+            </tr>
+            <tr>
+                <td>9:00 AM</td>
+                <td>Inauguration</td>
+                <td>Main Auditorium</td>
+            </tr>
+            <tr>
+                <td>10:00 AM</td>
+                <td>Coding Challenge</td>
+                <td>Computer Lab</td>
+            </tr>
+            <tr>
+                <td>11:00 AM</td>
+                <td>AI Innovation</td>
+                <td>Seminar Hall</td>
+            </tr>
+            <tr>
+                <td>1:00 PM</td>
+                <td>Dance Competition</td>
+                <td>Main Stage</td>
+            </tr>
+            <tr>
+                <td>2:00 PM</td>
+                <td>Singing Competition</td>
+                <td>Main Stage</td>
+            </tr>
+            <tr>
+                <td>3:00 PM</td>
+                <td>Prize Distribution</td>
+                <td>Main Auditorium</td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<!-- Coordinators and Rules -->
+<section class="content" id="rules">
+    <div class="section-title">
+        <h2>Coordinators & Rules</h2>
+        <p>Stay informed and enjoy the festival responsibly.</p>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>👥 Event Coordinators</h3>
+            <ul>
+                <li>Technical Events: Rahul Kumar</li>
+                <li>AI Workshop: Kiran Patel</li>
+                <li>Cultural Events: Sneha Reddy</li>
+                <li>Web Workshop: Meena Devi</li>
+                <li>Festival Help Desk: Student Organizing Team</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>📋 Festival Rules</h3>
+            <ul>
+                <li>Register before the event begins.</li>
+                <li>Carry your college ID card.</li>
+                <li>Follow the instructions of coordinators.</li>
+                <li>Maintain discipline and respect all participants.</li>
+                <li>Use original work in competitions.</li>
+                <li>Follow venue timings and safety guidelines.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Registration Form -->
+<section class="content" id="register">
+    <div class="section-title">
+        <h2>Festival Registration</h2>
+        <p>Fill in your details to register for an event.</p>
+    </div>
+
+    <form class="registration" id="registrationForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label for="college">College Name</label>
+        <input type="text" id="college" placeholder="Enter your college" required>
+
+        <label for="branch">Department / Branch</label>
+        <select id="branch" required>
+            <option value="">Select your branch</option>
+            <option>CSE</option>
+            <option>CSE - AI & ML</option>
+            <option>ECE</option>
+            <option>EEE</option>
+            <option>Mechanical</option>
+            <option>Civil</option>
+            <option>Other</option>
+        </select>
+
+        <label for="event">Select Event</label>
+        <select id="event" required>
+            <option value="">Choose an event</option>
+            <option>Coding Challenge</option>
+            <option>AI Innovation</option>
+            <option>Dance Competition</option>
+            <option>Singing Competition</option>
+            <option>Generative AI Workshop</option>
+            <option>Web Design Workshop</option>
+        </select>
+
+        <label for="messageBox">Additional Message (Optional)</label>
+        <textarea id="messageBox" rows="3"
+            placeholder="Any additional information"></textarea>
+
+        <button type="submit" class="btn">Submit Registration</button>
+        <p id="message" aria-live="polite"></p>
+    </form>
+</section>
+
+<footer>
+    <h3>🎉 UTSAV 2026</h3>
+    <p>Celebrate Talent. Explore Technology. Create Memories.</p>
+    <p>© 2026 College Festival | Sample Website</p>
+</footer>
+
+<script>
+    // Filter events by category
+    function filterEvents(category, button) {
+        const cards = document.querySelectorAll(".event-card");
+
+        cards.forEach(function(card) {
+            if (category === "all" ||
+                card.dataset.category === category) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        document.querySelectorAll(".filters button").forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+    }
+
+    // Choose an event and open the registration section
+    function selectEvent(eventName) {
+        document.getElementById("event").value = eventName;
+        document.getElementById("register").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+    // Demonstration form submission
+    document.getElementById("registrationForm").addEventListener(
+        "submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const selectedEvent = document.getElementById("event").value;
+
+            document.getElementById("message").textContent =
+                "Thank you, " + name +
+                "! Your " + selectedEvent +
+                " registration has been submitted in this demo.";
+
+            this.reset();
+        }
+    );
+</script>
+
+</body>
+</html>
